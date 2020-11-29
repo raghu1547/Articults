@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Galada&family=Michroma&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% block pregroup %} {% endblock %}
+            {% block group_content %} {% endblock %}
+            {% block postgroup %} {% endblock %}
+        </div>
+    </div>
+{% endblock %}

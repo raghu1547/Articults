@@ -1,0 +1,37 @@
+{% extends "groups/group_base.html" %}
+{% block pregroup %}
+
+<div class="container" ><br><h1 style="font-size: 150%; text-align:center;color:#c5a0dc;text-shadow:2px 5px black;font-family: 'Michroma', sans-serif;">{{ group.name }}</h1></div>
+
+<div class="container">
+    <span style="font-family: 'Varela Round', sans-serif; font-size: 120%;word-spacing: 2px;  color: #7ebc9b">Member Count: {{ group.members.count }}
+
+
+<span class="dif">
+    {% if user in group.members.all %}
+    <a style="margin-left: 1rem;font-size: 100% " href="{% url 'groups:leave' slug=group.slug %}"
+    class="btn btn-lg btn-fill btn-danger">
+<span class="glyphicon glyphicon-remove-circle"
+></span>Leave</a>
+{% else %}
+<a style="margin-left: 2rem;font-size: 100% " href="{% url 'groups:join' slug=group.slug %}"
+    class="btn btn-lg btn-fill btn-info">
+<span class="glyphicon glyphicon-ok-circle"
+></span>Join</a>
+    {% endif %}
+</span>
+</span>
+</div>
+{% endblock %}
+
+{% block group_content %}
+<div class="col-md-8">
+    {% if group.posts.count == 0 %}
+    <br><h2 style="font-family: 'Varela Round', sans-serif; font-size: 120%;word-spacing: 2px;  color: black">No posts in the group yet!</h2>
+    {% else %}
+    {% for post in group.posts.all %}
+    {% include "posts/_post.html" %}
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

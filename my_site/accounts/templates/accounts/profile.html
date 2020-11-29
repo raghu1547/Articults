@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{%load static%}
+{% load bootstrap3 %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detailing.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+    <br><div class="content-section">
+      <div class="media">
+         <img id="propic"  alt="Img Not Found ;(" src="{{ user.profile.profile_pic.url }}">
+        <div class="media-body">
+          <h2 style="font-family: 'Varela Round', sans-serif; color: #6cbbe9;margin-bottom:none !important;"class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+        </div>
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <br>
+          <fieldset class="form-group">
+              <legend style="text-align:center;"class="border-bottom mb-4">Profile Info</legend>
+              {% bootstrap_form u_form %}
+              {% bootstrap_form p_form %}
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+      </form>
+    </div>
+{% endblock content %}

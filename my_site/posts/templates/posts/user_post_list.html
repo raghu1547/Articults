@@ -1,0 +1,20 @@
+{% extends "posts/post_base.html" %}
+{% block prepost %}
+<div class="col-md-4">
+  <br><div class="policon">
+    <img id="propic" style="margin-left: 10%;margin-bottom: 1rem;width: 100px; height: 100px; border-radius: 100px;transition: transform .2s;-moz-border-radius: 100px; -webkit-border-radius: 100px;" alt="Img Not Found ;(" src="{{ user.profile.profile_pic.url }}">
+  </div>
+<div>
+    <span style="margin-left: 13%;font-family: 'Varela Round', sans-serif; color: #6cbbe9;margin-bottom:none !important;"class="account-heading">{{ user.username }}</span>
+    <p class="text-secondary">{{ user.email }}</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block post_content %}
+<div class="col-md-8">
+    {% for post in post_list %}
+    {% include "posts/_post.html" %}
+    {% endfor %}
+</div>
+{% endblock %}

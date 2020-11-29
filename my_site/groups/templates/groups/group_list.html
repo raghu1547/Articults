@@ -1,0 +1,54 @@
+{% extends "groups/group_base.html" %}
+{% load static %}
+{% block css %}
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Galada&family=Michroma&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% endblock %}
+{% block pregroup %}
+<div class="col-md-4">
+    <div class="content">
+        {% if user.is_authenticated %}
+        <br><h3 > <a style="font-family: 'Josefin Sans', sans-serif; color: #3b98ea;font-size: 2rem ;text-shadow: 2px 3px black; text-decoration:none;" href="{% url 'posts:for_user' username=user.username %}" title="click here to get the articles by this user"> {{ user.username }} </a></h3>
+        {% endif %}
+    </div>
+
+    <br><br><br><a style="color:black ; font-weight: bold;" href="{% url 'groups:create' %}" class="btn  btn-large btn-fill btn-secondary">
+        <span class="glyphicon glyphicon-plus" style="color: #3f9dfe;" ></span>Create New Group
+    </a><br><br>
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block group_content %}
+<div style="align-content: bottom"class="col-md-8">
+    <div class="list-group">
+        {% for group in object_list %}
+        <a style=" text-decoration: none;background-color: #d6dfe6;font-family: 'Do Hyeon', sans-serif;"title="click here to go the group info" href="{% url 'groups:single' slug=group.slug  %}" class="list-group-item">
+            <h2 style="color:black" class="title list-group-item-heading">{{ group.name }}</h2>
+            <div class="list-group-item-text container-fluid">
+                <h3 style="color:#ae5a5a ; font-family: 'Varela Round', sans-serif;">{{ group.description_html|safe }}</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 style="color:black"><span style="color: #3ffe66;font-size: 2rem"class="badge">{{ group.members.count }}</span>
+                            member{{group.members.count|pluralize}}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 style="color:black">
+                            <span style="color: #feb53f;  font-size: 2rem" class="badge">{{group.posts.count}}</span>
+                            post{{ group.posts.count|pluralize }}</h4>
+                    </div>
+                </div>
+            </div>
+
+        </a>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

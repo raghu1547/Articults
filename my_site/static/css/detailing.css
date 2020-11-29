@@ -1,0 +1,68 @@
+#log1 .mkbut{
+     font-size: 15px;
+     opacity: 0.5;
+     border: 1px solid white;
+     width: 110px;
+     height: 25px;
+     padding: 10px;
+     text-align: center;
+     font-weight: bold;
+     border-radius: 5px;
+     color: white;
+     line-height: 25px;
+     text-decoration: none;
+     box-sizing: border-box;
+}
+#log1 .mkbut:hover{
+  background-color: grey;
+}
+
+.jumbotron{
+  background-color: #d6dfe6;
+}
+.jumbotron h1,h2,h3,h4,h5,h6,strong{
+  color: black;
+}
+ div.content-section div.media img#propic {
+   width: 150px;
+   height: 150px;
+   border-radius: 150px;
+   transition: transform .2s;
+   -webkit-border-radius: 150px;
+   -moz-border-radius: 150px;
+}
+
+div.content-section div.media-body h2.account-heading{
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+}
+
+div.policon div.media-body h2.account-heading{
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+}
+img#propic:hover {
+  transform: scale(1.45);
+}
+
+div.content-section div.media-body{
+    margin-left: 2.3rem;
+}
+@media (max-width:470px) {
+
+  div.content-section div.media img#propic {
+    width: 100px;
+    height: 100px;
+    transition: transform .2s;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+ }
+
+ img#propic:hover {
+   transform: scale(1.3);
+ }
+
+}

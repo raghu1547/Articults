@@ -1,0 +1,17 @@
+{% extends "posts/post_base.html" %}
+{% block post_content %}
+
+{% if user.is_authenticated and post.user == user %}
+<h3>Are you sure want to delete this Article</h3>
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        <a href="{% url 'posts:single' username=user.username pk=object.pk %}" class="btn btn-danger btn-large ">
+            <input type="submit" value="Confirm Delete" class="btn btn-danger">
+        </a>
+    </form>
+</div>
+         
+            {% endif %}
+{% endblock %}

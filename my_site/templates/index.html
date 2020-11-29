@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<section id="banner" class="major">
+  <div class="inner" style="margin-left: 4rem" >
+    <header class="major">
+      <h1><span id="a1">Read</span> <span id="a2">the</span> <span id="a3">Best.</span>  <span id= 'a4' >Be</span> <span id="a5">the</span> <span id="a6">Best.</span></h1>
+    </header>
+    <div class="content">
+      <p>Browse through the best content on internet.</p>
+      <ul class="actions">
+        <li><a href="#one" class="button next scrolly">Explore</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Main -->
+<div id="main">
+
+  <!-- One -->
+    <section id="one" class="tiles">
+      <article>
+        <span class="image">
+                  <img src="{% static 'images/pic01.jpg' %}" alt=" " />
+        </span>
+        <header class="major">
+          <h3><a href="{% url 'posts:g1' %}" class="link">Covid - 19</a></h3>
+          <p>Know the real time updates at zero risk!</p>
+        </header>
+      </article>
+      <article>
+        <span class="image">
+          <img src="{% static 'images/pic02.jpg' %}" alt="" />
+        </span>
+        <header class="major">
+          <h3><a href="{% url 'posts:g2' %}" class="link">Astronomy</a></h3>
+  
+          <p>some random quotes.</p>
+        </header>
+      </article>
+      <article>
+        <span class="image">
+          <img src="{% static 'images/pic03.jpg' %}" alt="" />
+        </span>
+        <header class="major">
+          <h3><a href="{% url 'posts:g3' %}" class="link">Sciences</a></h3>
+          <p>Lorem etiam nullam</p>
+        </header>
+      </article>
+      <article>
+        <span class="image">
+          <img src="{% static 'images/pic04.jpg' %}" alt="" />
+        </span>
+        <header class="major">
+          <h3><a href="{% url 'posts:g4' %}" class="link">Medical Sciences</a></h3>
+          <p>Nisl sed aliquam</p>
+        </header>
+      </article>
+      <article>
+        <span class="image">
+          <img src="{% static 'images/pic05.jpg' %}" alt="" />
+        </span>
+        <header class="major">
+          <h3><a href="{% url 'posts:g5' %}" class="link">Technology</a></h3>
+          <p> dolor sit amet</p>
+        </header>
+      </article>
+      <article>
+        <span class="image">
+          <img src="{% static 'images/pic06.jpg' %}" alt="" />
+        </span>
+        <header class="major">
+          <h3><a href="{% url 'posts:g6' %}" class="link">Economics</a></h3>
+          <p>Feugiat amet tempus</p>
+        </header>
+      </article>
+    </section>
+
+  <!-- Two -->
+    <section id="two">
+      <div class="inner">
+        <header class="major">
+          <h2>Motive</h2>
+        </header>
+        <p>It's a small initiative taken by us in order to provide all kind of information under a single umbrella.We appreciate the efforts of all the article publishers for their sincere efforts in sharing the information with the world.</p>
+        <ul class="actions">
+          <li><a href="#" class="button next">Get Started</a></li>
+        </ul>
+      </div>
+    </section>
+
+</div>
+
+<!-- Contact -->
+<section id="contact" >
+  <div class="inner">
+    <section style="margin-left: 4rem">
+      <form method="post" action="#">
+        <div class="fields">
+          <div class="field half">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div class="field half">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" rows="6"></textarea>
+          </div>
+        </div>
+        <ul class="actions">
+          <li><input type="submit" value="Send Message" class="primary" /></li>
+          <li><input type="reset" value="Clear" /></li>
+        </ul>
+      </form>
+    </section>
+    <section class="split">
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-envelope"></span>
+          <h3>Email</h3>
+          <a href="#">articults@untitled.com</a>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-phone"></span>
+          <h3>Phone</h3>
+          <span>Will be updated.</span>
+        </div>
+      </section>
+      <section>
+        <div class="contact-method">
+          <span class="icon solid alt fa-home"></span>
+          <h3>Address</h3>
+          <span>Will be updated soon<br />
+          Pincode - 0000000<br />
+          India</span>
+        </div>
+      </section>
+    </section>
+  </div>
+</section>
+<footer id="footer" style=" margin-top: 1rem ; text-align : center ">
+  <div class="inner">
+    <ul class="icons">
+      <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+      <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+      <li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+    </ul>
+    <ul class="copyright">
+      <li>&copy; ArtiCults 2020</li>
+    </ul>
+  </div>
+</footer>
+
+</div>
+
+{% endblock %}
