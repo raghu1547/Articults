@@ -50,6 +50,10 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'newsletter.apps.NewsletterConfig',
+    
+    'django.contrib.humanize',
+    
+    
 ]
 
 CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR,'media')

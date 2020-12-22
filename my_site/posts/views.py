@@ -5,6 +5,8 @@ from groups.models import *
 from django.http import Http404
 from django.views.generic import *
 
+from django.core.paginator import Paginator
+
 from braces.views import SelectRelatedMixin
 from django.contrib import messages
 
@@ -18,14 +20,54 @@ User = get_user_model()
 class PostList(SelectRelatedMixin,ListView):
     model = models.Post
     select_related = ('user','group')
+    
+
     paginate_by = 2
 
+
+
+def post_list(request):
+    post_list = models.Post.objects.order_by('-date_added')
+    # keywords
+    # city
+    post_list = models.Post.objects.filter(title__contains = request.search)
+
+    paginator = Paginator(post_list, 2) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    # print(context['request'])
+    context = {'post_list': post_list,'page_obj':page_obj
+             }
+    return render(request, 'post/post_list.html', context)
+
+
+"""
+    def get_queryset(self,request):
+        super(PostList, self,request).get_queryset()
+        #super().get_queryset(self,request)
+        if request.method == 'POST':
+            word = request.POST.get('search')
+        try:
+            print("workinggggg")
+            self.post_list = models.Post.objects.filter(title__contains = word)
+        except:
+            print(word+"not workingggggg")
+            raise Http404
+        else:
+            return self.post_list.posts.all()
+          #  post_lis = models.Post.objects.all
+       # print(" workinggggg
+
+"""
+
 def searchart(request):
+
     if request.method == 'POST':
         word = request.POST.get('search')
         try:
             print("workinggggg")
-            post_lis = models.Post.objects.filter(title__contains = word)
+            post_list = models.Post.objects.filter(title__contains = word)
         except:
             print(word+"not workingggggg")
             raise Http404
@@ -33,8 +75,12 @@ def searchart(request):
             pass
           #  post_lis = models.Post.objects.all
        # print(" workingggggg")
-        pos_list = {'post_list':post_lis,'word':word}
-    return render(request,'posts/post_search.html',context=pos_list)
+        paginator = Paginator(post_list, 2) # Show 25 contacts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        pos_list = {'post_list':post_list,'word':word}
+        print(page_obj)
+    return render(request,'posts/post_search.html',{'post_list':post_list,'word':word,'page_obj': page_obj},)
 
 class UserPosts(ListView):
     model = models.Post
@@ -58,6 +104,8 @@ class UserPosts(ListView):
 class Group1Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
+    
+    paginate_by = 2
 
 
     def get_queryset(self):
@@ -77,6 +125,7 @@ class Group2Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
+    paginate_by = 2
 
     def get_queryset(self):
         try:
@@ -96,6 +145,7 @@ class Group3Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
+    paginate_by = 2
 
     def get_queryset(self):
         try:
@@ -115,6 +165,8 @@ class Group4Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
+    paginate_by = 2
+
 
     def get_queryset(self):
         try:
@@ -130,9 +182,11 @@ class Group4Posts(ListView):
         return context
 
 class Group5Posts(ListView):
+
     model = models.Post
     template_name = 'posts/post_list.html'
 
+    paginate_by = 2
 
     def get_queryset(self):
         try:
@@ -150,6 +204,7 @@ class Group5Posts(ListView):
 class Group6Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
+    paginate_by = 2
 
 
     def get_queryset(self):
