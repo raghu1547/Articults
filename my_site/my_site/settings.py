@@ -146,9 +146,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR,"static"),]
 
-LOGIN_REDIRECT_URL = 'test'
-LOGOUT_REDIRECT_URL = 'thanks'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 print(MEDIA_ROOT)
  # 'data' is my media folder
@@ -158,7 +157,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 LOGIN_REDIRECT_URL = 'posts:all'
-LOGOUT_REDIRECT_URL = 'thanks'
+LOGOUT_REDIRECT_URL = 'accounts:login'
 
 INTERNAL_IPS = [
     '127.0.0.1',

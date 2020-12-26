@@ -30,7 +30,7 @@ urlpatterns = [
     path('groups/',include('groups.urls',namespace='groups')),
     path('test/',views.TestPage.as_view(),name='test'),
     path('about/',views.AboutPage.as_view(),name='about'),
-    path('thanks/',views.ThanksPage.as_view(),name='thanks'),
+    #path('thanks/',views.ThanksPage.as_view(),name='thanks'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('subscribe/', newsletter_views.new, name='subscribe'),
     path('confirm/', newsletter_views.confirm, name='confirm'),
