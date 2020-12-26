@@ -6,11 +6,11 @@ from django.forms.widgets import FileInput,ClearableFileInput
 from django.core import validators
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    #email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username']
 
 
 class UserForm(forms.ModelForm):
@@ -30,6 +30,7 @@ class UserForm(forms.ModelForm):
             pass
         else:
             raise validators.ValidationError("Please Make Sure Your PassWords Match")
+
 
 
 
