@@ -24,25 +24,23 @@ class PostList(SelectRelatedMixin,ListView):
 
     paginate_by = 2
 
+    """
+    def post_list(request):
+        post_list = models.Post.objects.order_by('-date_added')
+        # keywords
+        # city
+        post_list = models.Post.objects.filter(title__contains = request.search)
+
+        paginator = Paginator(post_list, 2) # Show 25 contacts per page.
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        # print(context['request'])
+        context = {'post_list': post_list,'page_obj':page_obj
+                }
+        return render(request, 'post/post_list.html', context)
 
 
-def post_list(request):
-    post_list = models.Post.objects.order_by('-date_added')
-    # keywords
-    # city
-    post_list = models.Post.objects.filter(title__contains = request.search)
-
-    paginator = Paginator(post_list, 2) # Show 25 contacts per page.
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    # print(context['request'])
-    context = {'post_list': post_list,'page_obj':page_obj
-             }
-    return render(request, 'post/post_list.html', context)
-
-
-"""
     def get_queryset(self,request):
         super(PostList, self,request).get_queryset()
         #super().get_queryset(self,request)
@@ -56,31 +54,22 @@ def post_list(request):
             raise Http404
         else:
             return self.post_list.posts.all()
-          #  post_lis = models.Post.objects.all
-       # print(" workinggggg
+            #  post_lis = models.Post.objects.all
+    """
 
-"""
-
-def searchart(request):
-
-    if request.method == 'POST':
-        word = request.POST.get('search')
-        try:
-            print("workinggggg")
-            post_list = models.Post.objects.filter(title__contains = word)
-        except:
-            print(word+"not workingggggg")
-            raise Http404
-        else:
-            pass
-          #  post_lis = models.Post.objects.all
-       # print(" workingggggg")
-        paginator = Paginator(post_list, 2) # Show 25 contacts per page.
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        pos_list = {'post_list':post_list,'word':word}
-        print(page_obj)
-    return render(request,'posts/post_search.html',{'post_list':post_list,'word':word,'page_obj': page_obj},)
+    def searchart(request):	
+        if request.method == 'POST':	    
+            word = request.POST.get('search')
+            try:
+                print("workinggggg")
+                post_lis = models.Post.objects.filter(title__contains = word)
+            except:
+                print(word+"not workingggggg")
+                raise Http404
+            else:
+                pass
+            pos_list = {'post_list':post_lis,'word':word}
+            return render(request,'posts/post_search.html',context=pos_list)
 
 class UserPosts(ListView):
     model = models.Post
