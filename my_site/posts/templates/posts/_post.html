@@ -1,40 +1,34 @@
 {%load static%}
 {% block css %}
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Galada&family=Michroma&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'css/detailing.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Galada&family=Michroma&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/detailing.css' %}">
 {% endblock %}
-<div class="post media">
-    <!-- <h3>{{post.content|safe}}</h3> -->
-    <div class="media-body">
 
-        <h2 style=" color: white;font-family: 'Do Hyeon', sans-serif; ">{{ post.title }}</h2>
-        <h3 style="color: black; font-family: 'Josefin Sans', sans-serif; word-spacing: 2px; font-size: 2rem; letter-spacing:1px;" class="media-heading">
+<div class="post media">
+    <div>
+        <h2 style=" color: white;" class="display-4 mt-3">{{ post.title }}</h2>
+        <h2 class="text-secondary">
             Created by
-            <a style="font-family: 'Michroma', sans-serif; text-decoration: none;   color: #3b98ea;font-size: 2rem ;text-shadow: 2px 3px black" href="{% url 'posts:for_user' username=post.user.username %}" title="click here to get all the articles posted by this user">
-                {{ post.user.username }}</a>
-            </h3>
-        <h3 style="color: silver; font-family: 'Do Hyeon', sans-serif;">
+            <a style="text-decoration: none;" href="{% url 'posts:for_user' username=post.user.username %}" title="click here to get all the articles posted by this user">
+                {{ post.user.username }}
+            </a>
+        </h2>
+        <h5 style="color: silver;">
             <time class="time">
                 <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}"></a>
                 {{ post.created_at }}
             </time>
-        </h3>
-        <div  style="color: black; font-family: 'Do Hyeon', sans-serif"class="jumbotron">
+        </h5>
+        <div class="jumbotron" style="color: black; font-weight: bold">
             <p >{{ post.content|safe }}</p>
         </div>
         <div class="media-footer">
             {% if user.is_authenticated and post.user == user %}
-
-        <a class="btn btn-secondary btn-lg mt-1 mb-1" href="{% url 'posts:post-update' pk=post.pk %}">Update</a>
-        <a href="{% url 'posts:delete' pk=post.pk %}" class="btn btn-danger btn-lg mt-1 mb-1">
-
-<span class="glyphicon glyphicon-remove"
-></span>Delete</a>
-
-
+                <a class="btn btn-secondary btn-lg mt-1 mb-1" href="{% url 'posts:post-update' pk=post.pk %}">Update</a>
+                <a href="{% url 'posts:delete' pk=post.pk %}" class="btn btn-danger btn-lg mt-1 mb-1">
+                <span class="glyphicon glyphicon-remove"></span>Delete</a>
             {% endif %}
         </div>
-
     </div>
 </div>
