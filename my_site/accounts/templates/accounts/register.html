@@ -18,6 +18,9 @@
         {% bootstrap_form profile_form %}
         <br>
         <input type="submit" class="btn btn-success" value="Sign Up">
+        <small class="text-muted ml-2" id="log1">
+            <br><br><a class="mkbut" href="{% url 'accounts:login' %}">Already have an Account?</a>
+          </small>
     </form>
 </div>
 {% endblock %}
