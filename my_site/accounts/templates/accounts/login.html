@@ -11,14 +11,15 @@
 {% block content %}
 <br>
 <div class="container">
-    <h1 style="text-align:center; font-family: 'Ubuntu', sans-serif;">Log In</h1>
+    <h1 style="text-align:center;" class="display-4">Log In</h1>
     <form  method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
+        <br>
         <input style="filter: none;animation: none;" type="submit" value="Log In" class="btn btn-success">
         <small class="text-muted ml-2" id="log1">
           <br><br><a class="mkbut" href="{% url 'accounts:password_reset' %}">Forgot Password?</a>
-          <a style="margin-left: 3rem " class="mkbut" href="{% url 'accounts:signup' %}">Need an Account</a>
+          <a style="margin-left: 3rem " class="mkbut" href="{% url 'accounts:signup' %}">Need an Account?</a>
         </small>
     </form>
 </div>

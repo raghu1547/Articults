@@ -22,7 +22,7 @@ class PostList(SelectRelatedMixin,ListView):
     select_related = ('user','group')
     
 
-    paginate_by = 2
+    paginate_by = 5
 
     """
     def post_list(request):
