@@ -33,6 +33,7 @@ urlpatterns = [
     #path('thanks/',views.ThanksPage.as_view(),name='thanks'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('subscribe/', newsletter_views.new, name='subscribe'),
+    #path('contact/', views.contact, name='contact'),
     path('confirm/', newsletter_views.confirm, name='confirm'),
     path('delete/', newsletter_views.delete, name='delete'),
 ]
@@ -41,8 +42,8 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #from django.conf import settings
 #from django.urls import include, path
 
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns = [
+#         path('__debug__/', include(debug_toolbar.urls)),
+#     ] + urlpatterns

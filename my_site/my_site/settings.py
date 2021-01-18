@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
+    #'debug_toolbar',
     'bootstrap3',
     'accounts',
     'groups',
@@ -69,7 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'my_site.urls'
@@ -167,8 +167,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'email'
-EMAIL_HOST_PASSWORD = 'pass'
+EMAIL_HOST_USER = '##'
+EMAIL_HOST_PASSWORD = '##'
 
 FROM_EMAIL = EMAIL_HOST_USER
 SENDGRID_API_KEY = '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'
