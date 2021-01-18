@@ -11,13 +11,20 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from my_site.settings import BASE_DIR
 
+from my_site.forms import ContactForm
+
 import os
 
 
 # Create your views here.
 
 class Homepage(TemplateView):
+    
     template_name = 'index.html'
+
+def home(request):
+    form = ContactForm
+    return render(request,'index.html',{'form':form})
 
 
 
@@ -97,3 +104,76 @@ class ContactPage(TemplateView):
 class ThanksPage(TemplateView):
     template_name = 'thanks.html'
 """
+
+
+
+from django.core.mail import EmailMessage
+from django.shortcuts import redirect
+from django.template.loader import get_template
+
+# our view
+def contact(request):
+    #form_class = ContactForm
+
+    # new logic!
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+
+        if form.is_valid():
+            contact_name = request.POST.get(
+                'contact_name'
+            , '')
+            contact_email = request.POST.get(
+                'contact_email'
+            , '')
+            form_content = request.POST.get('content', '')
+
+            # Email the profile with the
+            # contact information
+            template = get_template('contact_template.txt')
+            context = {
+                'contact_name': contact_name,
+                'contact_email': contact_email,
+                'form_content': form_content,
+            }
+            content = template.render(context)
+
+            email = EmailMessage(
+                "New contact form submission",
+                content,
+                "Your website" +'',
+                ['youremail@gmail.com'],
+                headers = {'Reply-To': contact_email }
+            )
+            email.send()
+            return redirect('home')
+
+    return render(request, 'contact.html', {
+        'form': form_class,
+    })
+
+
+from django.core.mail import send_mail, BadHeaderError
+
+
+    
+def contactView(request):
+    if request.method == 'POST':
+    #    form = ContactForm()
+    #else:
+        print("jnfoneofi")
+        #return HttpResponse("gotch")
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['articults2020@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('home')
+    return render(request, "email.html", {'form': form})
+
+def successView(request):
+    return HttpResponse('Success! Thank you for your message.')

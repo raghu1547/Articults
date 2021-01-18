@@ -22,22 +22,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.Homepage.as_view(),name='home'),
+    path('',views.home,name='home'),
     path('accounts/',include('accounts.urls',namespace='accounts')),
     path('accounts/',include('django.contrib.auth.urls')),
     path('post/',include('posts.urls',namespace='posts')),
     path('groups/',include('groups.urls',namespace='groups')),
     path('test/',views.TestPage.as_view(),name='test'),
-    path('contact/',views.ContactPage.as_view(),name='contact'),
+    path('contact/',views.contactView,name='contact'),
     #path('thanks/',views.ThanksPage.as_view(),name='thanks'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-<<<<<<< HEAD
-    path('subscribe/', newsletter_views.new, name='subscribe'),
-    #path('contact/', views.contact, name='contact'),
-    path('confirm/', newsletter_views.confirm, name='confirm'),
-    path('delete/', newsletter_views.delete, name='delete'),
-=======
->>>>>>> 34434af667904eb078925643c0c90660d984d91d
+    path('contact/', views.contact, name='contact'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
