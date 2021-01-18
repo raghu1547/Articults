@@ -1,66 +1,60 @@
 {% extends "posts/post_base.html" %}
 
-
 {% block post_content %}
 {% block message %}{% endblock %}
-<div class="col-md-8">
 
-  {%  if post_list %}
-  <div > 
-    <div class="container">
-      <br>
-      <form class="form-inline md-form mr-auto mb-4" method="POST" action="{% url 'posts:search' %}" >
-        {% csrf_token %}
-        <input   style=" margin-top: 1rem; margin-left:1rem" class="form-control mr-sm-2" type="text" name="search" placeholder="Search your articles here..." aria-label="Search">
-        <button  style="color:black; font-weight: bold; margin-top: 1rem; margin-left:37%;"class="btn btn-primary btn-sm" type="submit">Search</button>
-      </form>
-    </div>
-    {% for post in post_list %}
-    <div class="container" >
-      <div class="jumbotron"  style="height: 250px; width: 1000px" >
-        <a style="text-decoration:none;"class="good"  href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
-          {% load static %} 
-          <h2 style="color:black;">{{ post.title }}<img id="propic" 
-                style="float: right;margin-top: 1rem;width: 100px;height: 100px;  border-radius: 100px;-webkit-border-radius: 100px;-moz-border-radius: 100px;"
-                 alt="Img Not Found ;(" src="{{ post.user.profile.profile_pic.url }}">
-          </h2>
-          <h3 id="rancolh" style="color:black">Created by <span id="randcol" style="color: #de5c1f">{{ post.user.username }}</span></h3>
-        </a>
-      </div>
-    </div>
-  </div> 
-    
-    {% endfor %}
-  </div> 
-    {% else %}
-    <h1>No posts yet!!</h1>
-    {% endif %}
-    
-
-    <div class="container">
-      {% if is_paginated %}
-
-         {% if page_obj.has_previous %}
-           <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-           <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-         {% endif %}
-
-         {% for num in page_obj.paginator.page_range %}
-           {% if page_obj.number == num %}
-             <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-           {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-             <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-           {% endif %}
-         {% endfor %}
-
-         {% if page_obj.has_next %}
-           <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-           <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-         {% endif %}
-
-       {% endif %}
-    </div>
-
+<div class="container">
+	{%  if post_list %}
+	<div class="container">
+		<br>
+		<form class="form-row" method="POST" action="{% url 'posts:search' %}" >
+			{% csrf_token %}
+			<div class="form-group col-md-9">
+				<input class="form-control" type="text" name="search" placeholder="Search your articles here..." aria-label="Search">
+			</div>
+			<div class="form-group col-md-3" style="text-align: center">
+				<button class="btn btn-primary btn-sm" type="submit">Search</button>
+			</div>
+		</form>
+	</div>
+	{% for post in post_list %}
+	<div class="container">
+		<div class="jumbotron">
+			<a style="text-decoration:none;" href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
+			{% load static %} 
+			<h2 style="color:black;">{{ post.title }}<img id="propic" 
+			style="float: right;margin-top: 1rem;width: 100px;height: 100px;  border-radius: 100px;-webkit-border-radius: 100px;-moz-border-radius: 100px;"
+				alt="Img Not Found ;(" src="{{ post.user.profile.profile_pic.url }}">
+			</h2>
+			<h4 id="rancolh" style="color:black">Created by <span id="randcol" style="color: #de5c1f">{{ post.user.username }}</span></h4>
+			</a>
+		</div>
+  	</div> 
+	{% endfor %}
+</div> 
+{% else %}
+	<h1>No posts yet!!</h1>
+{% endif %}
+<div class="container" style="text-align: center">
+	<div class="container">
+		{% if is_paginated %}
+			{% if page_obj.has_previous %}
+				<a class="btn btn-outline-warning mb-4" href="?page=1">First</a>
+				<a class="btn btn-outline-warning mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+			{% endif %}
+			{% for num in page_obj.paginator.page_range %}
+				{% if page_obj.number == num %}
+					<a class="btn btn-warning mb-4" href="?page={{ num }}">{{ num }}</a>
+				{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+					<a class="btn btn-outline-warning mb-4" href="?page={{ num }}">{{ num }}</a>
+				{% endif %}
+			{% endfor %}	
+			{% if page_obj.has_next %}
+				<a class="btn btn-outline-warning mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+				<a class="btn btn-outline-warning mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+			{% endif %}
+		{% endif %}
+	</div>
 </div>
 
 {% endblock %}

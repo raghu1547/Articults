@@ -22,7 +22,7 @@ class PostList(SelectRelatedMixin,ListView):
     select_related = ('user','group')
     
 
-    paginate_by = 2
+    paginate_by = 5
 
     """
     def post_list(request):
@@ -94,7 +94,7 @@ class Group1Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
     
-    paginate_by = 2
+    paginate_by = 5
 
 
     def get_queryset(self):
@@ -114,7 +114,7 @@ class Group2Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         try:
@@ -134,7 +134,7 @@ class Group3Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         try:
@@ -154,7 +154,7 @@ class Group4Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
-    paginate_by = 2
+    paginate_by = 5
 
 
     def get_queryset(self):
@@ -175,7 +175,7 @@ class Group5Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
 
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         try:
@@ -193,7 +193,7 @@ class Group5Posts(ListView):
 class Group6Posts(ListView):
     model = models.Post
     template_name = 'posts/post_list.html'
-    paginate_by = 2
+    paginate_by = 5
 
 
     def get_queryset(self):

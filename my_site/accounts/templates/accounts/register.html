@@ -1,17 +1,26 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{% load static %}
+{% block title %}Register - {% endblock %}
 {% block css %}
+<link rel="stylesheet" href="{% static 'css/detailing.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 {% endblock %}
+{% load bootstrap3 %}
 
 {% block content %}
-<div class="container" style="font-size: smaller;">
-    <h2>Sign Up</h2>
+<br>
+<div class="container">
+    <h1 style="text-align:center;" class="display-4">Register</h1>
     <form  method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         {% bootstrap_form user_form %}
         {% bootstrap_form profile_form %}
+        <br>
         <input type="submit" class="btn btn-success" value="Sign Up">
+        <small class="text-muted ml-2" id="log1">
+            <br><br><a class="mkbut" href="{% url 'accounts:login' %}">Already have an Account?</a>
+          </small>
     </form>
 </div>
 {% endblock %}
