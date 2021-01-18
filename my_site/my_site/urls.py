@@ -18,7 +18,6 @@ from django.urls import path,include
 from accounts import views
 from django.conf import settings
 from django.conf.urls.static import static
-from newsletter import views as newsletter_views
 
 
 urlpatterns = [
@@ -32,9 +31,6 @@ urlpatterns = [
     path('contact/',views.ContactPage.as_view(),name='contact'),
     #path('thanks/',views.ThanksPage.as_view(),name='thanks'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('subscribe/', newsletter_views.new, name='subscribe'),
-    path('confirm/', newsletter_views.confirm, name='confirm'),
-    path('delete/', newsletter_views.delete, name='delete'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
