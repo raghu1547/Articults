@@ -19,12 +19,10 @@ import os
 # Create your views here.
 
 class Homepage(TemplateView):
-    
     template_name = 'index.html'
 
 def home(request):
-    form = ContactForm
-    return render(request,'index.html',{'form':form})
+    return render(request,'index.html',{})
 
 
 
@@ -100,11 +98,13 @@ class ContactPage(TemplateView):
     template_name = 'contact.html'
 """
 
+"""
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
 
 def contact(request):
+    form = form_class()
     if request.method == 'POST':
         form = form_class(data=request.POST)
         if form.is_valid():
@@ -130,6 +130,7 @@ def contact(request):
     return render(request, 'contact.html', {
         'form': form_class,
     })
+"""
 
 from django.core.mail import send_mail, BadHeaderError
     
@@ -141,12 +142,18 @@ def contactView(request):
             subject = form.cleaned_data['subject']
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
+            message = f'From: {from_email}\n' + message
+            return_mail = {
+                'subject': 'We received your mail',
+                'message': 'Thank you for mailing us. Our team will get back to you soon.'
+            }
             try:
                 send_mail(subject, message, from_email, ['articults2020@gmail.com'])
+                send_mail(return_mail['subject'], return_mail['message'], 'articults2020@gmail.com', [from_email])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('home')
-    return render(request, "email.html", {'form': form})
+    return render(request, "contact.html", {'form': form})
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')

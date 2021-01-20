@@ -92,15 +92,6 @@
       </div>
     </section>
 
-    <h1>Contact Us</h1>
-<form method="post" action="{% url 'contact' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="form-actions">
-      <button type="submit">Send</button>
-    </div>
-</form>
-
 </div>
 <footer id="footer" style=" margin-top: 1rem ; text-align : center ">
   <div class="inner">
