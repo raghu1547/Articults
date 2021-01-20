@@ -93,43 +93,24 @@ def profile(request):
 
     return render(request, 'accounts/profile.html', context)
 
-
-
-
+"""
 class TestPage(TemplateView):
     template_name = 'test.html'
 class ContactPage(TemplateView):
     template_name = 'contact.html'
 """
-class ThanksPage(TemplateView):
-    template_name = 'thanks.html'
-"""
-
-
 
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
 
-# our view
 def contact(request):
-    #form_class = ContactForm
-
-    # new logic!
     if request.method == 'POST':
         form = form_class(data=request.POST)
-
         if form.is_valid():
-            contact_name = request.POST.get(
-                'contact_name'
-            , '')
-            contact_email = request.POST.get(
-                'contact_email'
-            , '')
+            contact_name = request.POST.get('contact_name', '')
+            contact_email = request.POST.get('contact_email', '')
             form_content = request.POST.get('content', '')
-
-            # Email the profile with the
-            # contact information
             template = get_template('contact_template.txt')
             context = {
                 'contact_name': contact_name,
@@ -137,7 +118,6 @@ def contact(request):
                 'form_content': form_content,
             }
             content = template.render(context)
-
             email = EmailMessage(
                 "New contact form submission",
                 content,
@@ -147,22 +127,15 @@ def contact(request):
             )
             email.send()
             return redirect('home')
-
     return render(request, 'contact.html', {
         'form': form_class,
     })
 
-
 from django.core.mail import send_mail, BadHeaderError
-
-
     
 def contactView(request):
+    form = ContactForm()
     if request.method == 'POST':
-    #    form = ContactForm()
-    #else:
-        print("jnfoneofi")
-        #return HttpResponse("gotch")
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']

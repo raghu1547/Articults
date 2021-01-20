@@ -27,9 +27,7 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('post/',include('posts.urls',namespace='posts')),
     path('groups/',include('groups.urls',namespace='groups')),
-    path('test/',views.TestPage.as_view(),name='test'),
     path('contact/',views.contactView,name='contact'),
-    #path('thanks/',views.ThanksPage.as_view(),name='thanks'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('contact/', views.contact, name='contact'),
 ]
