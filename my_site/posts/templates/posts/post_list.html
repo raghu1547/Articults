@@ -17,7 +17,9 @@
 			</div>
 		</form>
 	</div>
+
 	{% for post in post_list %}
+	{% if post.publish %}
 	<div class="container">
 		<div class="jumbotron">
 			<a style="text-decoration:none;" href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
@@ -29,7 +31,8 @@
 			<h4 id="rancolh" style="color:black">Created by <span id="randcol" style="color: #de5c1f">{{ post.user.username }}</span></h4>
 			</a>
 		</div>
-  	</div> 
+	  </div> 
+	  {% endif %}
 	{% endfor %}
 </div> 
 {% else %}

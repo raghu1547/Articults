@@ -25,39 +25,7 @@ class PostList(SelectRelatedMixin,ListView):
 
     paginate_by = 5
 
-    """
-    def post_list(request):
-        post_list = models.Post.objects.order_by('-date_added')
-        # keywords
-        # city
-        post_list = models.Post.objects.filter(title__contains = request.search)
-
-        paginator = Paginator(post_list, 2) # Show 25 contacts per page.
-
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        # print(context['request'])
-        context = {'post_list': post_list,'page_obj':page_obj
-                }
-        return render(request, 'post/post_list.html', context)
-
-
-    def get_queryset(self,request):
-        super(PostList, self,request).get_queryset()
-        #super().get_queryset(self,request)
-        if request.method == 'POST':
-            word = request.POST.get('search')
-        try:
-            print("workinggggg")
-            self.post_list = models.Post.objects.filter(title__contains = word)
-        except:
-            print(word+"not workingggggg")
-            raise Http404
-        else:
-            return self.post_list.posts.all()
-            #  post_lis = models.Post.objects.all
-    """
-
+   
     def searchart(request):	
         if request.method == 'POST':	    
             word = request.POST.get('search')
@@ -234,6 +202,7 @@ class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
         #form.save()
         if predict_prob([self.object.title+self.object.content]) > 0.5:
             print("It's offensive. Ask for admin's review.")
+            self.object.publish=False
         self.object.save()
         return super().form_valid(form)
 
@@ -244,10 +213,23 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        print(form.instance)
+        post = form.instance
+        if predict_prob([post.title+post.content]) > 0.5:
+            print("It's offensive. Ask for admin's review.")
+            post.publish=False
+        
+
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
+        print(post)
+        if predict_prob([post.title+post.content]) > 0.5:
+            print("It's offensive. Ask for admin's review.")
+            post.publish=False
+            
+
         if self.request.user == post.user:
             return True
         return False

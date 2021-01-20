@@ -14,11 +14,12 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=30,unique=False)
     content = RichTextUploadingField()
+    publish = models.BooleanField(default=True)
     group = models.ForeignKey(Group,related_name='posts',null=True,blank=True,on_delete=models.CASCADE)
 
 
     def __str__(self):
-        return self.content
+        return self.title
 
     def save(self,*args,**kwargs):
      #   self.message_html= self.message
@@ -29,4 +30,4 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        unique_together = ['user','content']
+        unique_together = ['user','content','title']
