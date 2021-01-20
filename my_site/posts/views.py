@@ -4,15 +4,16 @@ from django.urls import reverse_lazy
 from groups.models import *
 from django.http import Http404
 from django.views.generic import *
-
 from django.core.paginator import Paginator
-
 from braces.views import SelectRelatedMixin
 from django.contrib import messages
-
 from .import models,forms
-
 from django.contrib.auth import get_user_model
+import sys
+import os
+sys.path.insert(0, os.path.abspath('..'))
+from checker.profanity_check import *
+
 User = get_user_model()
 
 # Create your views here.
@@ -231,6 +232,8 @@ class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         #form.save()
+        if predict_prob([self.object.title+self.object.content]) > 0.5:
+            print("It's offensive. Ask for admin's review.")
         self.object.save()
         return super().form_valid(form)
 
