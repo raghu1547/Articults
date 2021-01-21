@@ -3,6 +3,8 @@
 {% block post_content %}
 {% block message %}{% endblock %}
 
+{% load bootstrap3 %}
+
 <div class="container">
 	{%  if post_list %}
 	<div class="container">
@@ -17,6 +19,12 @@
 			</div>
 		</form>
 	</div>
+	  
+	{% if messages %}
+	{% for m in messages%}
+	<script>alert("{{ m }}");</script>
+	{% endfor %}
+	{% endif %}
 
 	{% for post in post_list %}
 	{% if post.publish %}

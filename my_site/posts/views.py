@@ -13,6 +13,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath('..'))
 from checker.profanity_check import *
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -30,10 +31,8 @@ class PostList(SelectRelatedMixin,ListView):
         if request.method == 'POST':	    
             word = request.POST.get('search')
             try:
-                print("workinggggg")
                 post_lis = models.Post.objects.filter(title__contains = word)
             except:
-                print(word+"not workingggggg")
                 raise Http404
             else:
                 pass
@@ -219,6 +218,7 @@ class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
         if predict_prob([self.object.title+self.object.content]) > 0.5:
             print("It's offensive. Ask for admin's review.")
             self.object.publish=False
+            messages.warning(self.request, f"Your post contains some unparliamentary words. We need to check with the admin and review.")
         self.object.save()
         return super().form_valid(form)
 
@@ -234,7 +234,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if predict_prob([post.title+post.content]) > 0.5:
             print("It's offensive. Ask for admin's review.")
             post.publish=False
-        
+            messages.warning(self.request, f"Your post contains some unparliamentary words. We need to check with the admin and review.")
 
         return super().form_valid(form)
 
