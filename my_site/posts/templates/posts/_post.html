@@ -9,10 +9,20 @@
     <div>
         <h2 style=" color: white;" class="display-4 mt-3">{{ post.title }}</h2>
         <h2 class="text-secondary">
-            Created by
-            <a style="text-decoration: none;" href="{% url 'posts:for_user' username=post.user.username %}" title="click here to get all the articles posted by this user">
+             
+            
+            <form action="{% url 'posts:user_post_list' %}" method="post">
+                {% csrf_token %}
+                <input  type="hidden" name="username" value={{ post.user.username }}>
+                Created by
+                <button class="btn btn-info btn-small">
+                    
+                    
+            <a style="text-decoration: none;"  title="click here to get all the articles posted by this user">
                 {{ post.user.username }}
             </a>
+                </button>
+            </form>
         </h2>
         <h5 style="color: silver;">
             <time class="time">

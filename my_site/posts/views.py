@@ -40,6 +40,21 @@ class PostList(SelectRelatedMixin,ListView):
             pos_list = {'post_list':post_lis,'word':word}
             return render(request,'posts/post_search.html',context=pos_list)
 
+def user_post_list(request):
+
+    if request.method == "POST":
+        print(request.POST.get('username'))
+        try:
+            post_user = User.objects.get(username__iexact=request.POST.get('username'))
+        except User.DoesNotExist:
+            raise Http404
+        print(post_user.email)
+        post_list = post_user.posts.all()
+        
+    return render(request,"posts/user_post_list.html",{'post_list':post_list,'user':post_user})
+
+
+
 class UserPosts(ListView):
     model = models.Post
     template_name = 'posts/user_post_list.html'
@@ -48,6 +63,7 @@ class UserPosts(ListView):
     def get_queryset(self):
         try:
             self.post_user = User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
+
         except User.DoesNotExist:
             raise Http404
         else:
