@@ -2,11 +2,11 @@ import numpy as np
 import joblib
 import os, sys
 
-os.chdir('checker')
-print(os.getcwd())
+#os.chdir('checker')
+#print(os.getcwd())
 
-model = joblib.load('data/model.joblib')
-vectorizer = joblib.load('data/vectorizer.joblib')
+model = joblib.load('checker/data/model.joblib')
+vectorizer = joblib.load('checker/data/vectorizer.joblib')
 
 def _get_profane_prob(prob):
   return prob[1]

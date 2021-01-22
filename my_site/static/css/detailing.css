@@ -13,6 +13,26 @@
      text-decoration: none;
      box-sizing: border-box;
 }
+
+.container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 2%;
+  margin-left: 5%;
+}
+div.posts-page{
+  margin-right: 0% !important;
+}
+
+.parent{
+  display: flex;
+}
+.inedit1{
+  width: 30%;
+}
+.inedit2{
+  width: 75%;
+}
 #log1 .mkbut:hover{
   background-color: grey;
 }
@@ -30,6 +50,13 @@
    transition: transform .2s;
    -webkit-border-radius: 150px;
    -moz-border-radius: 150px;
+}
+
+div.posts-page{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 div.content-section div.media-body h2.account-heading{
@@ -60,9 +87,23 @@ div.content-section div.media-body{
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
  }
+ .parent{
+   display:contents;
+ }
+ .inedit1{
+   width: 50%;
+ }
+ .inedit2{
+   width: 96%;
+ }
 
  img#propic:hover {
    transform: scale(1.3);
  }
-
+ .container {
+   margin-top: 10px;
+   margin-bottom: 10px;
+   margin-right: 0;
+   margin-left: 0;
+ }
 }
