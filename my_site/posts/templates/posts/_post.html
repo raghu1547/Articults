@@ -11,15 +11,15 @@
         <div class="parent">
           <div class="inedit1">
         <h2 class="text-secondary">
-             
-            
+
+
             <form action="{% url 'posts:user_post_list' %}" method="post">
                 {% csrf_token %}
                 <input  type="hidden" name="username" value={{ post.user.username }}>
                 Created by
-                <button class="btn btn-info btn-small">
-                    
-                    
+                <button class="changed">
+
+
             <a style="text-decoration: none;"  title="click here to get all the articles posted by this user">
                 {{ post.user.username }}
             </a>
