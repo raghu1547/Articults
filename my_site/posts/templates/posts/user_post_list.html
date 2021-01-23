@@ -2,12 +2,12 @@
 {% block prepost %}
 <div class="col-md-4">
   <br><div class="policon">
-    <img id="propic" style="margin-left: 10%;margin-bottom: 1rem;width: 100px; height: 100px; border-radius: 100px;transition: transform .2s;-moz-border-radius: 100px; -webkit-border-radius: 100px;" alt="Img Not Found ;(" src="{{ user.profile.profile_pic.url }}">
+    <img id="propic" style="margin-left: 10%;margin-bottom: 1rem;width: 100px; height: 100px; border-radius: 100px;transition: transform .2s;-moz-border-radius: 100px; -webkit-border-radius: 100px;" alt="Img Not Found ;(" src="{{ post_user.profile.profile_pic.url }}">
   </div>
 <div>
      <span style="margin-left: 13%;color: #6cbbe9;margin-bottom:none !important;"class="account-heading">{{ post_list.user.username }}</span> 
-    <p class="text-secondary">{{ user.email }}</p>
-    <p class="text-secondary"> {{ user.username }}</p>
+    <p class="text-secondary">{{ post_user.email }}</p>
+    <p class="text-secondary"> {{ post_user.username }}</p>
   </div>
 </div>
 {% endblock %}

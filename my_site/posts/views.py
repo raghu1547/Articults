@@ -50,7 +50,7 @@ def user_post_list(request):
         print(post_user.email)
         post_list = post_user.posts.all()
         
-    return render(request,"posts/user_post_list.html",{'post_list':post_list,'user':post_user})
+    return render(request,"posts/user_post_list.html",{'post_list':post_list,'post_user':post_user})
 
 
 
