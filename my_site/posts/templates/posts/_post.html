@@ -7,8 +7,11 @@
 
 <div class="post media">
     <div>
-        <h2 style=" color: white;" class="display-4 mt-3">{{ post.title }}</h2>
+        <center><h2 style=" color: white;" class="display-4 mt-3">{{ post.title }}</h2></center>
+        <div class="parent">
+          <div class="inedit1">
         <h2 class="text-secondary">
+<<<<<<< HEAD
              
             
             <form action="{% url 'posts:user_post_list' %}" method="post">
@@ -23,15 +26,27 @@
             </a>
                 </button>
             </form>
+=======
+            Created by
+            <a style="text-decoration: none; color: black;" href="{% url 'posts:for_user' username=post.user.username %}" title="click here to get all the articles posted by this user">
+                {{ post.user.username }}
+            </a>
+
+>>>>>>> c2cfd986024df4c721af2c869286b96f52aa0cf1
         </h2>
+            On
         <h5 style="color: silver;">
             <time class="time">
                 <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}"></a>
                 {{ post.created_at }}
             </time>
         </h5>
-        <div class="jumbotron" style="color: black; font-weight: bold">
+          </div>
+        <div class="inedit2">
+        <div class="jumbotron" style="color: black; font-weight: bold;">
             <p >{{ post.content|safe }}</p>
+        </div>
+        </div>
         </div>
         <div class="media-footer">
             {% if user.is_authenticated and post.user == user %}
