@@ -2,12 +2,20 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-{% endblock %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    {% endblock %}
 {% load bootstrap3 %}
 {% block content %}
-<section id="contact" >
+<section  id="contact" >
   <p class="display-4" style="text-align: center">Contact Us</p>
-  <div class="inner">
+  <div class="inner  " >
     <section style="margin-left: 4rem">
         <form method="post" action="{% url 'contact' %}">
             {% csrf_token %}
@@ -19,26 +27,28 @@
     </section>
     <section class="split">
       <section>
-        <div class="contact-method">
-          <span class="icon solid alt fa-envelope"></span>
-          <h3>Email</h3>
-          <a href="#">articults@untitled.com</a>
+        <div class="container">
+           
+          <h3 style="margin-bottom: 0%;" ><span class="glyphicon glyphicon-envelope"></span>  Email</h3>
+          <div style="margin-left: 2%;" ><a href="#">articults@untitled.com</a></div>
         </div>
       </section>
       <section>
-        <div class="contact-method">
-          <span class="icon solid alt fa-phone"></span>
-          <h3>Phone</h3>
-          <span>Will be updated.</span>
+        <div class="container">
+          <h3 style="margin-bottom: 0%;" ><span class="glyphicon glyphicon-earphone"></span> Phone</h3>
+          <div style="margin-left: 2%;"><span>Will be updated.</span></div>
         </div>
       </section>
       <section>
-        <div class="contact-method">
-          <span class="icon solid alt fa-home"></span>
-          <h3>Team</h3>
-          <span>Nitin Sai<br />
-          Raghu Nagam <br />
-          Rahul M</span>
+        <div class="container">
+          
+          <h3 style="margin-bottom: 0%;" ><span class="glyphicon glyphicon-user"></span>Team</h3>
+          <div style="margin-left: 2%;" >
+            <span>Nitin Sai<br />
+              Raghu Nagam <br />
+              Rahul M</span>
+          </div>
+          
         </div>
       </section>
     </section>
