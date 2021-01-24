@@ -10,7 +10,7 @@
 <div class="col-md-4">
     <div class="content">
         {% if user.is_authenticated %}
-        <br><h3 > <a style="font-family: 'Josefin Sans', sans-serif; color: #3b98ea;font-size: 2rem ;text-shadow: 2px 3px black; text-decoration:none;" href="{% url 'posts:for_user' username=user.username %}" title="click here to get the articles by this user"> {{ user.username }} </a></h3>
+        <br><h3 > <h3 style="font-family: 'Josefin Sans', sans-serif; color: #3b98ea;font-size: 2rem ;text-shadow: 2px 3px black; text-decoration:none;" > {{ user.username }} </h3></h3>
         {% endif %}
     </div>
 
