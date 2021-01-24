@@ -65,7 +65,7 @@ class UserProfileInfoForm(forms.ModelForm):
             #validate file size
             if len(profile_pic) > (2 * 1024 * 1024):
                 raise forms.ValidationError(
-                    u'Avatar file size may not exceed 20k.')
+                    u'Photo file size may not exceed 2mb.')
 
         except AttributeError:
             """
