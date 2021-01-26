@@ -39,6 +39,42 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = Profile
         fields = ('prof_url','profile_pic')
+    
+    
+    def clean_profile_pic(self):
+        profile_pic = self.cleaned_data['profile_pic']
+
+        try:
+            w, h = get_image_dimensions(profile_pic)
+
+            # #validate dimensions
+            # max_width = max_height = 100000
+            # if w > max_width or h > max_height:
+            #     raise forms.ValidationError(
+            #         u'Please use an image that is '
+            #          '%s x %s pixels or smaller.' % (max_width, max_height))
+
+            #validate content type
+            main, sub = profile_pic.content_type.split('/')
+            if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
+                raise forms.ValidationError(u'Please use a JPEG, '
+                    'GIF or PNG image.')
+
+            #validate file size
+            if len(profile_pic) > (2 * 1024 * 1024):
+                raise forms.ValidationError(
+                    u'Photo file size may not exceed 2mb.')
+
+        except AttributeError:
+            """
+            Handles case when we are updating the user profile
+            and do not supply a new avatar
+            """
+            pass
+
+        return profile_pic
+
+
 
 class UserProfileInfoForm1(forms.ModelForm):
    

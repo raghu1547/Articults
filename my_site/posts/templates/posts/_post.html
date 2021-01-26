@@ -3,7 +3,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Galada&family=Michroma&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/detailing.css' %}">
-{% endblock %}
+
+    <style>
+    
+        /* a:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+} */
+
+a {
+    all: unset;
+}
+
+    </style>
+
+    {% endblock %}
+
 
 <div class="post media">
     <div>
@@ -34,9 +65,9 @@
             </time>
         </h5>
           </div>
-        <div class="inedit2">
+        <div class="inedit2"  >
         <div class="jumbotron" style="color: black; font-weight: bold;">
-            <p >{{ post.content|safe }}</p>
+            <p  >{{ post.content|safe }}</p>
         </div>
         </div>
         </div>
