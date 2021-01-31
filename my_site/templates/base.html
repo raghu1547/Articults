@@ -19,42 +19,42 @@
 			<header id="header" class="alt">
 				<a href="{% url 'home' %}" class="logo"><strong>ArtiCults</strong></a>
 				<nav>
-					<a href="#menu">Menu</a>
+					<a href="#menu" style="color: white; text-decoration: none;">Menu</a>
 				</nav>
 			</header>
 			<nav id="menu" style="text-align: center">
 				<ul class="links" style="align-content: center">
               	{% if not user.is_authenticated %}
 					<li>
-						<a href="{% url 'posts:all' %}" class="navbar-brand">Articles</a>
+						<a href="{% url 'posts:all' %}" class="navbar-brand" style="color: white">Articles</a>
 					</li>
 					<li>
-						<a href="{% url 'groups:all' %}" class="navbar-brand">Groups</a>
+						<a href="{% url 'groups:all' %}" class="navbar-brand" style="color: white">Groups</a>
 					</li>
               		<li>
-						<a href="{% url 'accounts:login' %}" class="navbar-brand">Log In</a>
+						<a href="{% url 'accounts:login' %}" class="navbar-brand" style="color: white">Log In</a>
 					</li>
               		<li>
-						<a href="{% url 'accounts:signup' %}" class="navbar-brand">Sign Up</a>
+						<a href="{% url 'accounts:signup' %}" class="navbar-brand" style="color: white">Sign Up</a>
 					</li>
               	{% else %}
               		<li>
-						<a href="{% url 'accounts:profile' %}" class="navbar-brand">Profile</a>
+						<a href="{% url 'accounts:profile' %}" class="navbar-brand" style="color: white">Profile</a>
 					</li>
 					<li>
-						<a href="{% url 'posts:all' %}" class="navbar-brand">Articles</a>
+						<a href="{% url 'posts:all' %}" class="navbar-brand" style="color: white">Articles</a>
 					</li>
 					<li>
-						<a href="{% url 'posts:create' %}" class="navbar-brand">Create Post</a>
+						<a href="{% url 'posts:create' %}" class="navbar-brand" style="color: white">Create Post</a>
 					</li>
 					<li>
-						<a href="{% url 'groups:all' %}" class="navbar-brand">Groups</a>
+						<a href="{% url 'groups:all' %}" class="navbar-brand" style="color: white">Groups</a>
 					</li>
 					<li>
-						<a href="{% url 'accounts:logout' %}" class="navbar-brand">Log Out</a>
+						<a href="{% url 'accounts:logout' %}" class="navbar-brand" style="color: white">Log Out</a>
 					</li>
               	{% endif %}
-					<li><a href="{% url 'contact' %}" class="navbar-brand">Contact</a></li>
+					<li><a href="{% url 'contact' %}" class="navbar-brand" style="color: white">Contact</a></li>
 				</ul>
 			</nav>
 			{% block search %}
